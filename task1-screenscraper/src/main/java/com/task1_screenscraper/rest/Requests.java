@@ -1,6 +1,6 @@
-package com.task1_screenscraper.unirest_client.rest;
+package com.task1_screenscraper.rest;
 
-import com.task1_screenscraper.unirest_client.products.Product;
+import com.task1_screenscraper.products.Product;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
@@ -9,6 +9,7 @@ import kong.unirest.json.JSONObject;
 import java.util.UUID;
 
 public class Requests {
+    //TODO: ASK if correct implementation.
     private JSONObject jsonObject;
     private final String endpoint;
     private final UUID myUUID;

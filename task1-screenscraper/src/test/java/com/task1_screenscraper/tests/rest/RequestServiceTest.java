@@ -1,7 +1,7 @@
 package com.task1_screenscraper.tests.rest;
 
-import com.task1_screenscraper.unirest_client.products.Product;
-import com.task1_screenscraper.unirest_client.rest.Requests;
+import com.task1_screenscraper.products.Product;
+import com.task1_screenscraper.rest.Requests;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import org.junit.jupiter.api.AfterEach;
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class RequestServiceTest {
+    // TODO: I WILL MOST LIKELY DELETE THIS, I JUST WANTED TO HAVE A PROOF OF CONCEPT THAT MY REST API WORKS WELL.
     Requests requests;
 
     @BeforeEach

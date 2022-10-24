@@ -1,4 +1,4 @@
-package com.task1_screenscraper.unirest_client.products;
+package com.task1_screenscraper.products;
 
 public class Product {
     // product separated to more easily mock/have test doubles of this class
@@ -20,6 +20,15 @@ public class Product {
         this.priceInCents = priceInCents;
     }
 
+//    // default constructor
+//    public Product() {
+//        this.alertType = -1;
+//        this.heading = null;
+//        this.description = null;
+//        this.url = null;
+//        this.imageUrl = null;
+//        this.priceInCents = -1;
+//    }
 
     public int getAlertType() {
         return alertType;
