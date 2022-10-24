@@ -1,5 +1,7 @@
-package com.task1_screenscraper.unirest_client;
+package com.task1_screenscraper.tests.rest;
 
+import com.task1_screenscraper.unirest_client.products.Product;
+import com.task1_screenscraper.unirest_client.rest.Requests;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import org.junit.jupiter.api.AfterEach;
@@ -8,17 +10,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class RequestServiceTest {
-    RequestService requestService;
+    Requests requests;
 
     @BeforeEach
     public void setup(){
-        requestService = new RequestService();
-
+        requests = new Requests();
     }
 
     @AfterEach
     public void teardown(){
-        requestService = null;
+        requests = null;
     }
 
     @Test
@@ -26,7 +27,7 @@ public class RequestServiceTest {
         // Setup (if any)
 
         // Exercise
-        HttpResponse<JsonNode> response = requestService.makeDeleteRequest();
+        HttpResponse<JsonNode> response = requests.makeDeleteRequest();
 
         // Verify
         Assertions.assertEquals("OK", response.getStatusText());
@@ -43,10 +44,12 @@ public class RequestServiceTest {
         String url = "https://www.amazon.co.uk/Windows-Display-Ultrabook-Processor-Bluetooth";
         String imageUrl = "https://m.media-amazon.com/images/I/712Xf2LtbJL._AC_SX679_.jpg";
         int priceInCents = 24999;
-        requestService.setJSONObject(alertType, heading, description, url, imageUrl, priceInCents);
+        Product product = new Product(alertType, heading, description, url, imageUrl, priceInCents);
+//        requests.setJSONObject(alertType, heading, description, url, imageUrl, priceInCents);
+        requests.setJSONObject(product); // setter injection
 
         // Exercise
-        HttpResponse<JsonNode> response = requestService.makePostRequest();
+        HttpResponse<JsonNode> response = requests.makePostRequest();
 
         // Verify
         Assertions.assertEquals("Created", response.getStatusText());
