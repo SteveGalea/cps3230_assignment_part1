@@ -1,24 +1,27 @@
 package com.task1_screenscraper.screenscraper;
 
+import com.task1_screenscraper.converters.PriceConverter;
 import com.task1_screenscraper.pageobjects.MaltaParkPageObject;
 import com.task1_screenscraper.models.Product;
 import com.task1_screenscraper.rest.RequestHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MaltaParkScreenScraper {
     WebDriver driver;
+    WebDriverWait wait;
     RequestHelper requestHelper;
     MaltaParkPageObject maltaParkPageObject;
     List<Product> productList;
 
-    public MaltaParkScreenScraper(WebDriver driver) {
+    public MaltaParkScreenScraper(WebDriver driver, WebDriverWait wait, PriceConverter priceConverter) {
         this.driver = driver;
         requestHelper = new RequestHelper();
-        maltaParkPageObject = new MaltaParkPageObject(driver);
+        maltaParkPageObject = new MaltaParkPageObject(driver, wait, priceConverter);
         productList = new ArrayList<>(5);
     }
 

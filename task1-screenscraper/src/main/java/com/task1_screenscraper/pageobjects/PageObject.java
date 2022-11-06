@@ -7,10 +7,10 @@ import java.time.Duration;
 
 public abstract class PageObject {
     WebDriver driver;
-    WebDriverWait wait;
+//    WebDriverWait wait;
 
     public PageObject(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+//        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 }

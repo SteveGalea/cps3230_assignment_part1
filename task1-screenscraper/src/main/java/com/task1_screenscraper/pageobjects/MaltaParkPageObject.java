@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +15,12 @@ import java.util.stream.Collectors;
 public class MaltaParkPageObject extends PageObject{
     // helper method price converter called to convert text into a savable price
     PriceConverter priceConverter;
+    WebDriverWait wait;
 
-    public MaltaParkPageObject(WebDriver driver){
+    public MaltaParkPageObject(WebDriver driver, WebDriverWait wait, PriceConverter priceConverter){
         super(driver);
-        this.priceConverter = new PriceConverter();
+        this.wait = wait;
+        this.priceConverter = priceConverter;
     }
 
     public WebElement getCloseButton() {
@@ -39,11 +44,11 @@ public class MaltaParkPageObject extends PageObject{
         return driver.findElement(bySearchButtonXpath);
     }
 
-    public WebElement getFirstItem() {
-        By bySearchButtonXpath = By.xpath("//div[contains(@class, 'item') and contains(@class, 'featured') and contains(@class, 'e4') and contains(@class, 'e3') and contains(@class, 'e2') and contains(@class, 'i0')]");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(bySearchButtonXpath));
-        return driver.findElement(bySearchButtonXpath);
-    }
+//    public WebElement getFirstItem() {
+//        By bySearchButtonXpath = By.xpath("//div[contains(@class, 'item') and contains(@class, 'featured') and contains(@class, 'e4') and contains(@class, 'e3') and contains(@class, 'e2') and contains(@class, 'i0')]");
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(bySearchButtonXpath));
+//        return driver.findElement(bySearchButtonXpath);
+//    }
 
     public String getProductHeading() {
         By byHeadingXpath = By.xpath("//h1[@class='top-title']/span");
@@ -74,7 +79,7 @@ public class MaltaParkPageObject extends PageObject{
         return priceConverter.textToCents(rawPriceText);
     }
 
-    public int getProductAlertType() { //TODO: ASK
+    public int getProductAlertType() {
         int alertType;
         String categoryText = getCategoryOfItem();
 
@@ -126,7 +131,7 @@ public class MaltaParkPageObject extends PageObject{
 //        return 6;
     }
 
-    private String getCategoryOfItem() {
+    public String getCategoryOfItem() {
         By byCategoryXpath = By.xpath("//div[contains(@class,'ui') and contains(@class,'list') and contains(@class,'fixed-label') and contains(@class,'item-details')]/div[3]");
         WebElement webElement = driver.findElement(byCategoryXpath);
         return webElement.getText().split("Category:")[1];

@@ -1,5 +1,8 @@
 package com.task1_screenscraper.utils;
 
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+
 public interface MarketAlertServer {
 
     //should I enumerate this type?
@@ -27,4 +30,7 @@ public interface MarketAlertServer {
     public static int UNSUPPORTED_MEDIA_TYPE = 415; // both
     public static int INTERNAL_SERVER_ERROR = 500;
     public static int NOT_IMPLEMENTED = 501;
+    public static int SERVICE_UNAVAILABLE = 503;
+
+    int getStatus(HttpResponse<JsonNode> response);
 }

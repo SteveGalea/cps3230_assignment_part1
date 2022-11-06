@@ -42,16 +42,8 @@ public class RequestHelper {
 
     // delete request using UnirestApi
     public int makeDeleteRequest() {
-        HttpResponse<JsonNode> response;
-        int tries = 1;
-        int statusCode = -1;
-        //assume if fail, delete request will retry
-        do {
-            response = Unirest.delete(endpoint + "?userId=" + myUUID).asJson();
-            statusCode = response.getStatus();
-            tries ++;
-        }while (tries <= 3 && statusCode != MarketAlertServer.OK);
-        return statusCode; //TODO: TEST!
+        HttpResponse<JsonNode> response = Unirest.delete(endpoint + "?userId=" + myUUID).asJson();
+        return response.getStatus();
     }
 
     // post request using UnirestApi

@@ -9,5 +9,6 @@ public class Main {
         Facade facade = new Facade();
 
         facade.scrapeAndUpload5AlertsUsingKeyword("Laptop");
+        facade.verify5AlertsWereUploaded();
     }
 }
