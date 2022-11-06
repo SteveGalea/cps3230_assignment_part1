@@ -5,20 +5,26 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import java.time.Duration;
-
-public class MaltaParkPageObject {
-    //should this page object be in main?
-    WebDriver driver;
-    WebDriverWait wait;
+public class MaltaParkPageObject extends PageObject{
+    // helper method price converter called to convert text into a savable price
     PriceConverter priceConverter;
 
     public MaltaParkPageObject(WebDriver driver){
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        super(driver);
         this.priceConverter = new PriceConverter();
+    }
+
+    public WebElement getCloseButton() {
+        By byXpathButtonDisabled = By.xpath("//*[@id=\"okbutton\" and contains(., 'Close (1)')]");
+        By byXpathButtonEnabled = By.xpath("//*[@id=\"okbutton\" and contains(., 'Close')]");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(byXpathButtonDisabled));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(byXpathButtonEnabled));
+        wait.until(ExpectedConditions.elementToBeClickable(byXpathButtonEnabled));
+        return driver.findElement(byXpathButtonEnabled);
     }
 
     public WebElement getSearchBar() {
@@ -65,11 +71,10 @@ public class MaltaParkPageObject {
         By byPriceXpath = By.xpath("//h1[@class='top-price']");
         WebElement webElement = driver.findElement(byPriceXpath);
         String rawPriceText = webElement.getText();
-        int priceInCents = priceConverter.textToCents(rawPriceText);
-        return priceInCents;
+        return priceConverter.textToCents(rawPriceText);
     }
 
-    public int getProductAlertType() {
+    public int getProductAlertType() { //TODO: ASK
         int alertType;
         String categoryText = getCategoryOfItem();
 
@@ -114,10 +119,11 @@ public class MaltaParkPageObject {
             case "Video Games":
                 alertType = 6; break;
 
-            // Anything else not considered above
+            // Anything else not considered above will be invalid
             default: alertType = -1; break;
         }
         return alertType;
+//        return 6;
     }
 
     private String getCategoryOfItem() {
@@ -125,4 +131,14 @@ public class MaltaParkPageObject {
         WebElement webElement = driver.findElement(byCategoryXpath);
         return webElement.getText().split("Category:")[1];
     }
+
+    public List<String> getFirst5ItemsUrls() {
+        By byCommonClassXpath =  By.xpath("//div[contains(@class,'ui') and contains(@class,'items') and contains(@class,'listings')]/div[contains(@class,'item')]/*/a[@class='header']");
+        List<WebElement> allElements = driver.findElements(byCommonClassXpath);
+
+        List<String> allLinks = new ArrayList<String>(5);
+        allElements.forEach(element -> allLinks.add(element.getAttribute("href")));
+        return allLinks.stream().limit(5).collect(Collectors.toList());
+    }
+
 }

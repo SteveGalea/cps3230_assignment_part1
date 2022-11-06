@@ -23,10 +23,13 @@ public class PriceConverterTests {
     public void testConvertEmpty(){
         //Setup
         String price = "";
+
         //Exercise
         int actual = priceConverter.textToCents(price);
+
         //Verify
         Assertions.assertEquals(-1, actual);
+
         //Teardown
     }
 
@@ -34,10 +37,13 @@ public class PriceConverterTests {
     public void testConvertThousandSeparator(){
         //Setup
         String price = ",";
+
         //Exercise
         int actual = priceConverter.textToCents(price);
+
         //Verify
         Assertions.assertEquals(-1, actual);
+
         //Teardown
     }
 
@@ -45,10 +51,13 @@ public class PriceConverterTests {
     public void testConvert1000EuroIntoCents(){
         //Setup
         String price = "1000";
+
         //Exercise
         int actual = priceConverter.textToCents(price);
+
         //Verify
         Assertions.assertEquals(100000, actual);
+
         //Teardown
     }
 
@@ -56,10 +65,13 @@ public class PriceConverterTests {
     public void testConvert1000EuroIntoCentsWithThousandsSeparator(){
         //Setup
         String price = "1,000";
+
         //Exercise
         int actual = priceConverter.textToCents(price);
+
         //Verify
         Assertions.assertEquals(100000, actual);
+
         //Teardown
     }
 
@@ -132,6 +144,7 @@ public class PriceConverterTests {
 
         //Teardown
     }
+
     //TODO: ASK ABOUT THIS
 
 //    @Test
@@ -143,7 +156,7 @@ public class PriceConverterTests {
 //        int actual = priceConverter.textToCents(price);
 //
 //        //Verify
-//        Assertions.assertEquals(-1, actual);
+//        Assertions.assertEquals(-1, actual); // indicates invalid
 //
 //        //Teardown
 //    }

@@ -1,4 +1,4 @@
-package com.task1_screenscraper.products;
+package com.task1_screenscraper.models;
 
 public class Product {
     // product separated to more easily mock/have test doubles of this class
@@ -20,16 +20,10 @@ public class Product {
         this.priceInCents = priceInCents;
     }
 
-//    // default constructor
-//    public Product() {
-//        this.alertType = -1;
-//        this.heading = null;
-//        this.description = null;
-//        this.url = null;
-//        this.imageUrl = null;
-//        this.priceInCents = -1;
-//    }
+    public Product() {
+    }
 
+    // getters
     public int getAlertType() {
         return alertType;
     }
@@ -52,5 +46,30 @@ public class Product {
 
     public int getPriceInCents() {
         return priceInCents;
+    }
+
+    //setters
+    public void setAlertType(int alertType) {
+        this.alertType = alertType;
+    }
+
+    public void setHeading(String heading) {
+        this.heading = heading;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setPriceInCents(int priceInCents) {
+        this.priceInCents = priceInCents;
     }
 }

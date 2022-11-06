@@ -28,6 +28,13 @@
             <artifactId>selenium-java</artifactId>
             <version>4.5.0</version>
         </dependency>
+        <!--Required for my test doubles, stubs, spies and mocks-->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>4.8.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!--TODO: MENTION DEPENDENCY LOOKUP DESIGN PATTERN-->

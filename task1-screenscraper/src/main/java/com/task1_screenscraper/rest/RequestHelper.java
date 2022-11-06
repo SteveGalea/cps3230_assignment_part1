@@ -1,27 +1,34 @@
 package com.task1_screenscraper.rest;
 
-import com.task1_screenscraper.products.Product;
+import com.task1_screenscraper.models.Product;
+import com.task1_screenscraper.utils.MarketAlertServer;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import kong.unirest.json.JSONObject;
+import org.openqa.selenium.json.Json;
 
 import java.util.UUID;
 
-public class Requests {
-    //TODO: ASK if correct implementation.
+public class RequestHelper {
+    //TODO: IMPLEMENT USING FACADE DESIGN PATTERN
     private JSONObject jsonObject;
     private final String endpoint;
     private final UUID myUUID;
 
     // constructor
-    public Requests(){
+    public RequestHelper(){
+        jsonObject = new JSONObject();
         endpoint = "https://api.marketalertum.com/Alert";
         myUUID = UUID.fromString("baf95487-17f6-40df-b758-3c938a0ec72a");
-        jsonObject = null;
     }
 
-    // setters and getters
+    // getters
+    private JSONObject getJSONObject(){
+        return jsonObject;
+    }
+
+    // setters
     public void setJSONObject(Product product){
         jsonObject = new JSONObject();
         jsonObject.put("alertType", product.getAlertType()); // dont escape integers, otherwise :(
@@ -33,21 +40,27 @@ public class Requests {
         jsonObject.put("priceInCents", product.getPriceInCents());
     }
 
-    private JSONObject getJSONObject(){
-        return jsonObject;
+    // delete request using UnirestApi
+    public int makeDeleteRequest() {
+        HttpResponse<JsonNode> response;
+        int tries = 1;
+        int statusCode = -1;
+        //assume if fail, delete request will retry
+        do {
+            response = Unirest.delete(endpoint + "?userId=" + myUUID).asJson();
+            statusCode = response.getStatus();
+            tries ++;
+        }while (tries <= 3 && statusCode != MarketAlertServer.OK);
+        return statusCode; //TODO: TEST!
     }
 
-    // delete request
-    public HttpResponse<JsonNode> makeDeleteRequest() {
-        return Unirest.delete(endpoint +"?userId="+myUUID).asJson();
-    }
-
-    // post request
-    public HttpResponse<JsonNode> makePostRequest() {
-        return Unirest.post(endpoint)
+    // post request using UnirestApi
+    public int makePostRequest() {
+        HttpResponse<JsonNode> response = Unirest.post(endpoint)
                 .header("Content-Type", "application/json")
                 .body(getJSONObject())
                 .asJson();
+        return response.getStatus();
     }
 
 }

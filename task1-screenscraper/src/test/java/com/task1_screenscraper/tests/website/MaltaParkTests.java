@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
 public class MaltaParkTests {
     WebDriver driver;
     MaltaParkPageObject maltaParkPageObject;
@@ -28,7 +30,7 @@ public class MaltaParkTests {
     }
 
     @Test
-    public void testGetAnElectronic(){
+    public void testGetALaptop(){
         //Setup
         WebElement searchBar;
         WebElement searchButton;
@@ -42,7 +44,6 @@ public class MaltaParkTests {
         firstItem = maltaParkPageObject.getFirstItem();
         firstItem.click();
 
-        // int alertType = get number from category by switch case: computer & office /electronics, then alert will pertain to electronics
         int alertType = maltaParkPageObject.getProductAlertType();
         String heading = maltaParkPageObject.getProductHeading();
         String description = maltaParkPageObject.getProductDescription();
@@ -54,18 +55,34 @@ public class MaltaParkTests {
         Assertions.assertNotNull(searchBar);
         Assertions.assertNotNull(searchButton);
         Assertions.assertNotNull(firstItem);
-        Assertions.assertEquals(6, alertType);
-        Assertions.assertEquals("Apple MacBook Pro, 13\" 256GB (2016)", heading);
+        Assertions.assertTrue(alertType>0);
+        Assertions.assertTrue(heading.length()>0);
         Assertions.assertTrue(description.length()>0);
-        Assertions.assertEquals("https://www.maltapark.com/item/details/9506959", url);
-        Assertions.assertEquals("https://www.maltapark.com/asset/itemphotos/9506959/9506959_1.jpg?_ts=3", imageUrl);
-        Assertions.assertEquals(70000, priceInCents);
+        Assertions.assertTrue(url.length()>0);
+        Assertions.assertTrue(imageUrl.length()>0);
+        Assertions.assertTrue(priceInCents>0);
+
         //Teardown
     }
 
-    /*public void testGetAnElectronic(){
-    public void testGetAnElectronic(){
-    public void testGetAnElectronic(){
-    public void testGetAnElectronic(){
-    public void testGetAnElectronic(){*/
+    @Test
+    public void testGetFirst5LaptopsUrlLinks(){
+        //Setup
+        WebElement searchBar;
+        WebElement searchButton;
+        List<String> first5ItemsUrls;
+
+        //Exercise
+        searchBar = maltaParkPageObject.getSearchBar();
+        searchButton = maltaParkPageObject.getSearchButton();
+        searchBar.sendKeys("Laptop");
+        searchButton.submit();
+        first5ItemsUrls = maltaParkPageObject.getFirst5ItemsUrls();
+
+        //Verify
+        Assertions.assertNotNull(searchBar);
+        Assertions.assertNotNull(searchButton);
+        Assertions.assertEquals(5, first5ItemsUrls.size());
+        //Teardown
+    }
 }
