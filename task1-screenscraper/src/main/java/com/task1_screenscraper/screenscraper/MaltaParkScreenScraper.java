@@ -15,15 +15,18 @@ import java.util.List;
 public class MaltaParkScreenScraper {
     WebDriver driver;
     WebDriverWait wait;
+    PriceConverter priceConverter;
     MaltaParkPageObject maltaParkPageObject;
     List<Product> productList;
     RequestHelper requestHelper;
 
-    public MaltaParkScreenScraper(WebDriver driver, WebDriverWait wait, PriceConverter priceConverter, MaltaParkPageObject maltaParkPageObject, List<Product> productList) {
+    public MaltaParkScreenScraper(WebDriver driver, WebDriverWait wait, PriceConverter priceConverter, MaltaParkPageObject maltaParkPageObject, List<Product> productList, RequestHelper requestHelper) {
         this.driver = driver;
+        this.wait = wait; //?
         this.maltaParkPageObject = maltaParkPageObject;
         this.productList = productList;
-        this.requestHelper = new RequestHelper();
+        this.priceConverter = priceConverter;// ?
+        this.requestHelper = requestHelper;
 
     }
 //
@@ -87,8 +90,8 @@ public class MaltaParkScreenScraper {
         }
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public void setProductList(List<Product> productList){
+        this.productList = productList;
     }
 
 //    public void deleteMarketAlerts(){
