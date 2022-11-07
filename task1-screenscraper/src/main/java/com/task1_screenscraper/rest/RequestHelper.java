@@ -11,11 +11,9 @@ import org.openqa.selenium.json.Json;
 import java.util.UUID;
 
 public class RequestHelper {
-    //TODO: IMPLEMENT USING FACADE DESIGN PATTERN
     private JSONObject jsonObject;
     private final String endpoint;
     private final UUID myUUID;
-
     // constructor
     public RequestHelper(){
         jsonObject = new JSONObject();

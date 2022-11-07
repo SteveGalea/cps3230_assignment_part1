@@ -1,4 +1,4 @@
-package com.task1_screenscraper.tests.website.rest;
+package com.task1_screenscraper.tests.rest;
 
 import com.task1_screenscraper.models.Product;
 import com.task1_screenscraper.rest.RequestHelper;

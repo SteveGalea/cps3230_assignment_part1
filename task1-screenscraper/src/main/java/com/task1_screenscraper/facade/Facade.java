@@ -1,12 +1,16 @@
 package com.task1_screenscraper.facade;
 
 import com.task1_screenscraper.converters.PriceConverter;
+import com.task1_screenscraper.models.Product;
+import com.task1_screenscraper.pageobjects.MaltaParkPageObject;
 import com.task1_screenscraper.screenscraper.MaltaParkScreenScraper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Facade {
@@ -19,7 +23,9 @@ public class Facade {
         driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         PriceConverter priceConverter = new PriceConverter();
-        maltaParkScreenScraper = new MaltaParkScreenScraper(driver, wait, priceConverter);
+        List<Product> productList = new ArrayList<>(5);
+        MaltaParkPageObject maltaParkPageObject = new MaltaParkPageObject(driver,wait,priceConverter);
+        maltaParkScreenScraper = new MaltaParkScreenScraper(driver, wait, priceConverter, maltaParkPageObject, productList);
     }
 
     public void scrapeAndUpload5AlertsUsingKeyword(String keyword){

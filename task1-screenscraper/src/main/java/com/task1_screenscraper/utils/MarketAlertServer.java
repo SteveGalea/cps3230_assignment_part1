@@ -32,5 +32,5 @@ public interface MarketAlertServer {
     public static int NOT_IMPLEMENTED = 501;
     public static int SERVICE_UNAVAILABLE = 503;
 
-    int getStatus(HttpResponse<JsonNode> response);
+//    int getStatus(HttpResponse<JsonNode> response);
 }

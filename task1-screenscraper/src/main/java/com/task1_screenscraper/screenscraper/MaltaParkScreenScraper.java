@@ -9,25 +9,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MaltaParkScreenScraper {
     WebDriver driver;
     WebDriverWait wait;
-    RequestHelper requestHelper;
     MaltaParkPageObject maltaParkPageObject;
     List<Product> productList;
+    RequestHelper requestHelper;
 
-    public MaltaParkScreenScraper(WebDriver driver, WebDriverWait wait, PriceConverter priceConverter) {
+    public MaltaParkScreenScraper(WebDriver driver, WebDriverWait wait, PriceConverter priceConverter, MaltaParkPageObject maltaParkPageObject, List<Product> productList) {
         this.driver = driver;
-        requestHelper = new RequestHelper();
-        maltaParkPageObject = new MaltaParkPageObject(driver, wait, priceConverter);
-        productList = new ArrayList<>(5);
-    }
+        this.maltaParkPageObject = maltaParkPageObject;
+        this.productList = productList;
+        this.requestHelper = new RequestHelper();
 
-    public List<Product> getProductList() {
-        return productList;
     }
+//
+//    public List<Product> getProductList() {
+//        return productList;
+//    }
 
     public void goToUrl(String websiteUrl) {
         driver.manage().window().maximize();
@@ -85,7 +87,11 @@ public class MaltaParkScreenScraper {
         }
     }
 
-    public void deleteMarketAlerts(){
-        requestHelper.makeDeleteRequest();
+    public List<Product> getProductList() {
+        return productList;
     }
+
+//    public void deleteMarketAlerts(){
+//        requestHelper.makeDeleteRequest();
+//    }
 }
