@@ -188,7 +188,7 @@ public class RequestServiceTest {
 
         // Verify
         Assertions.assertEquals(marketAlertServer.BAD_REQUEST, statusCode);
-        verify(requestMaker, times(1)).makePostRequest();
+        verify(requestMaker, times(3)).makePostRequest();
 
         // Teardown (if any)
     }
