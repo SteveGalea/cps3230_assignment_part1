@@ -4,12 +4,11 @@ import com.task1_screenscraper.converters.PriceConverter;
 import com.task1_screenscraper.pageobjects.MaltaParkPageObject;
 import com.task1_screenscraper.models.Product;
 import com.task1_screenscraper.rest.RequestHelper;
+import com.task1_screenscraper.rest.RequestMaker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class MaltaParkScreenScraper {
@@ -19,15 +18,16 @@ public class MaltaParkScreenScraper {
     MaltaParkPageObject maltaParkPageObject;
     List<Product> productList;
     RequestHelper requestHelper;
+    RequestMaker requestMaker;
 
-    public MaltaParkScreenScraper(WebDriver driver, WebDriverWait wait, PriceConverter priceConverter, MaltaParkPageObject maltaParkPageObject, List<Product> productList, RequestHelper requestHelper) {
+    public MaltaParkScreenScraper(WebDriver driver, WebDriverWait wait, PriceConverter priceConverter, MaltaParkPageObject maltaParkPageObject, List<Product> productList, RequestHelper requestHelper, RequestMaker requestMaker) {
         this.driver = driver;
         this.wait = wait; //?
         this.maltaParkPageObject = maltaParkPageObject;
         this.productList = productList;
         this.priceConverter = priceConverter;// ?
         this.requestHelper = requestHelper;
-
+        this.requestMaker = requestMaker;
     }
 //
 //    public List<Product> getProductList() {
@@ -85,14 +85,20 @@ public class MaltaParkScreenScraper {
     public void uploadProductListToMarketAlert(){
         for (Product product:
              productList) {
-            requestHelper.setJSONObject(product);
-            requestHelper.makePostRequest();
+            requestMaker.setJSONObject(product);
+            requestHelper.setRequestMaker(requestMaker);
+            requestHelper.post();
         }
     }
 
     public void setProductList(List<Product> productList){
         this.productList = productList;
     }
+//
+//    public String getWebsiteUrl() {
+//        return "https://www.maltapark.com/";
+//    }
+
 
 //    public void deleteMarketAlerts(){
 //        requestHelper.makeDeleteRequest();

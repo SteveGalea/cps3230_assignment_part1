@@ -1,16 +1,15 @@
 package com.task1_screenscraper.tests.screenscraper;
 
-import com.beust.ah.A;
 import com.task1_screenscraper.converters.PriceConverter;
 import com.task1_screenscraper.models.Product;
 import com.task1_screenscraper.pageobjects.MaltaParkPageObject;
 import com.task1_screenscraper.rest.RequestHelper;
+import com.task1_screenscraper.rest.RequestMaker;
 import com.task1_screenscraper.screenscraper.MaltaParkScreenScraper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,11 +17,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -32,12 +27,12 @@ public class MaltaParkScreenScraperTests {
     WebDriverWait wait;
     PriceConverter priceConverter;
     RequestHelper requestHelper;
+    RequestMaker requestMaker;
     MaltaParkScreenScraper maltaParkScreenScraper;
     MaltaParkPageObject maltaParkPageObject;
     WebDriver.Options mockOptions;
     WebDriver.Window mockWindow;
     List<Product> productList;
-    String eCommerceWebsiteUrl = "https://www.maltapark.com/";
 //    String marketAlertWebsiteUrl = "https://www.marketalertum.com/Alerts/List";
 
 
@@ -47,11 +42,11 @@ public class MaltaParkScreenScraperTests {
         driver = mock(ChromeDriver.class);
         wait = mock(WebDriverWait.class);
         priceConverter = mock(PriceConverter.class);
-        productList = mock(ArrayList.class);
+        productList = mock(List.class);
         requestHelper = mock(RequestHelper.class);
-//        productList = new ArrayList<>();
+        requestMaker = mock(RequestMaker.class);
         maltaParkPageObject = mock(MaltaParkPageObject.class);
-        maltaParkScreenScraper = new MaltaParkScreenScraper(driver,wait,priceConverter, maltaParkPageObject, productList, requestHelper);
+        maltaParkScreenScraper = new MaltaParkScreenScraper(driver,wait,priceConverter, maltaParkPageObject, productList, requestHelper, requestMaker);
 //        driver = new ChromeDriver();
 //        maltaParkScreenScraper = new MaltaParkScreenScraper(driver, wait, priceConverter);
         //        marketAlertUMPageObject = new MarketAlertUMPageObject(driver);
@@ -77,7 +72,7 @@ public class MaltaParkScreenScraperTests {
         setupOfMocksForGoToUrl();
 
         //Exercise
-        maltaParkScreenScraper.goToUrl(eCommerceWebsiteUrl);
+        maltaParkScreenScraper.goToUrl("https://www.maltapark.com/");
 
         //Verify
         Mockito.verify(driver, times(1)).get(anyString());
@@ -133,7 +128,7 @@ public class MaltaParkScreenScraperTests {
     }
 
     @Test
-    public void testScrapeFirst5ResultsToProductList(){
+    public void testScrapeFirst5ResultsAndVerify5ProductsWereAdded(){
         //Setup
         List<String> mockListOf5Links = new ArrayList<>();
         mockListOf5Links.add("Link1");
@@ -161,8 +156,7 @@ public class MaltaParkScreenScraperTests {
         maltaParkScreenScraper.scrapeFirst5Results();
 
         //Verify
-        Assertions.assertEquals(5, mockListOf5Links.size()); // assert we have
-        verify(productList, times(5)).add(any()); // assert that our iterator was invoked 5 times
+        verify(productList, times(5)).add(any()); // assert that 5 items were added
         //Teardown
     }
 
@@ -179,17 +173,19 @@ public class MaltaParkScreenScraperTests {
         productList.add(product);
         maltaParkScreenScraper.setProductList(productList);
 
-        doNothing().when(requestHelper).setJSONObject(any()); // fix this
-        when(requestHelper.makePostRequest()).thenReturn(201);
+        doNothing().when(requestMaker).setJSONObject(any()); // fix this
+        doNothing().when(requestHelper).setRequestMaker(any()); // fix this
+        when(requestHelper.post()).thenReturn(201);
 
         //Exercise
         maltaParkScreenScraper.uploadProductListToMarketAlert();
 
         //Verify
-        verify(requestHelper, times(5)).setJSONObject(any());
-        verify(requestHelper, times(5)).makePostRequest();
+        verify(requestMaker, times(5)).setJSONObject(any());
+        verify(requestHelper, times(5)).setRequestMaker(any());
+        verify(requestHelper, times(5)).post();
 
-        Assertions.assertEquals(201, requestHelper.makePostRequest());
+        Assertions.assertEquals(201, requestHelper.post());
 
         //Teardown
     }

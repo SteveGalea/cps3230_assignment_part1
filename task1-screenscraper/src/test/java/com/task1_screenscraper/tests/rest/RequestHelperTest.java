@@ -2,28 +2,23 @@ package com.task1_screenscraper.tests.rest;
 
 import com.task1_screenscraper.models.Product;
 import com.task1_screenscraper.rest.RequestHelper;
+import com.task1_screenscraper.rest.RequestMaker;
 import com.task1_screenscraper.utils.MarketAlertServer;
-import kong.unirest.HttpResponse;
-import kong.unirest.JsonNode;
-import kong.unirest.Unirest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 public class RequestHelperTest {
     RequestHelper requestHelper;
+    RequestMaker requestMaker;
     MarketAlertServer marketAlertServer;
-
 
     @BeforeEach
     public void setup(){
-        requestHelper = new RequestHelper();
+        requestHelper = mock(RequestHelper.class);
+        requestMaker = new RequestMaker();
         marketAlertServer = mock(MarketAlertServer.class);
     }
 
@@ -34,15 +29,26 @@ public class RequestHelperTest {
 
     @Test
     public void testMakeDeleteRequest(){
-        // Setup (if any)
+        // Setup (if any);
 
         // Exercise
-        int statusCode = requestHelper.makeDeleteRequest() ;
+        int statusCode = requestMaker.makeDeleteRequest() ;
 
         // Verify
         Assertions.assertEquals(marketAlertServer.OK,statusCode);
 
         // Teardown (if any)
+    }
+
+    @Test
+    public void testPostRequestWithNoJsonBodyReturnsBadRequest(){
+        // Setup
+
+        // Exercise
+        int statusCode = requestMaker.makePostRequest();
+
+        // Verify
+        Assertions.assertEquals(marketAlertServer.BAD_REQUEST, statusCode);
     }
 
     @Test
@@ -59,16 +65,15 @@ public class RequestHelperTest {
         Product product = new Product(alertType, heading, description, url, imageUrl, priceInCents);
 
         // setter injection
-        requestHelper.setJSONObject(product);
+        requestMaker.setJSONObject(product);
 
         // Exercise
-        int statusCode = requestHelper.makePostRequest();
+        int statusCode = requestMaker.makePostRequest();
 
         // Verify
         Assertions.assertEquals(marketAlertServer.CREATED, statusCode);
 
         // Teardown (if any)
-        requestHelper.makeDeleteRequest();
+        requestMaker.makeDeleteRequest();
     }
-
 }

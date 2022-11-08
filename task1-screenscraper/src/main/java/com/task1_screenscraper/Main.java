@@ -3,16 +3,19 @@ package com.task1_screenscraper;
 import com.task1_screenscraper.facade.Facade;
 
 public class Main {
-//    Facade facade;
-//    public Main(Facade facade){
-//        this.facade = facade;
-//    }
+
+    static Facade facade;
+
+    public static void setFacade(Facade facade) {
+        Main.facade = facade;
+    }
 
     public static void main(String args[]){
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\steve\\OneDrive\\Desktop\\YR3\\SEM1\\CPS3230\\webtesting\\chromedriver.exe");
-        Facade facade = new Facade();
-
+        if(facade == null){
+            // can never achieve 100% line coverage because this requires the creation of a facade mock
+            facade = new Facade();
+        }
         facade.scrapeAndUpload5AlertsUsingKeyword("Laptop");
-        facade.verify5AlertsWereUploaded();
     }
+
 }
