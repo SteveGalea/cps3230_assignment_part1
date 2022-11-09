@@ -19,7 +19,6 @@ public class RequestMaker {
         myUUID = UUID.fromString("baf95487-17f6-40df-b758-3c938a0ec72a");
     }
 
-
     // getters
     private JSONObject getJSONObject(){
         return jsonObject;

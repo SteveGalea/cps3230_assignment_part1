@@ -83,51 +83,30 @@ public class MaltaParkPageObject extends PageObject{
         String categoryText = getCategoryOfItem();
 
         // determine and assign Alert Type
-        switch (categoryText){
+        alertType = switch (categoryText) {
             // Car
-            case "Cars":
-            case "Motorcycles":
-            case "Quad Bikes":
-            case "Scooters":
-            case "Vans & Trucks":
-            case "Vehicle Parts":
-            case "Other":
-                alertType = 1; break;
+            case "Cars", "Motorcycles", "Quad Bikes", "Scooters", "Vans & Trucks", "Vehicle Parts", "Other" -> 1;
 
             // Boat
-            case "Marine":
-                alertType = 2; break;
+            case "Marine" -> 2;
 
             // PropertyForRent
-            case "Long Lets":
-            case "Short / Holiday Lets":
-                alertType = 3; break;
+            case "Long Lets", "Short / Holiday Lets" -> 3;
 
             // PropertyForSale
-            case "Property For Sale":
-                alertType = 4; break;
+            case "Property For Sale" -> 4;
 
             // Toys
-            case "Dolls & Bears":
-            case "Toys":
-                alertType = 5; break;
+            case "Dolls & Bears", "Toys" -> 5;
 
             // Electronics
-            case "Cameras & Photo":
-            case "Computers & Office":
-            case "Consumer Electronics":
-            case "Home Appliances":
-            case "Networking & Telecom":
-            case "PDAs":
-            case "TV":
-            case "Video Games":
-                alertType = 6; break;
+            case "Cameras & Photo", "Computers & Office", "Consumer Electronics", "Home Appliances", "Networking & Telecom", "PDAs", "TV", "Video Games" ->
+                    6;
 
             // Anything else not considered above will be invalid
-            default: alertType = -1; break;
-        }
+            default -> -1;
+        };
         return alertType;
-//        return 6;
     }
 
     public String getCategoryOfItem() {

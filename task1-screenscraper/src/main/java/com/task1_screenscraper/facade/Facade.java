@@ -40,7 +40,7 @@ public class Facade {
 
     //Setters
     public void setWebDriver(WebDriver driver) {
-        this.driver.quit();
+        this.driver.quit(); // quit previously set webdriver
         this.driver = driver;
     }
     public void setMaltaParkScreenScraper(MaltaParkScreenScraper maltaParkScreenScraper) {

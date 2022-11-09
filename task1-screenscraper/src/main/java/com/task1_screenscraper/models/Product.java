@@ -20,6 +20,7 @@ public class Product {
         this.priceInCents = priceInCents;
     }
 
+    // default constructor
     public Product() {
     }
 

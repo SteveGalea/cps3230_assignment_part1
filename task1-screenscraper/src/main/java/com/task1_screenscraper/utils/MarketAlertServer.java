@@ -1,8 +1,6 @@
 package com.task1_screenscraper.utils;
 
 public interface MarketAlertServer {
-
-    //should I enumerate this type?
     //https://restfulapi.net/http-status-codes/
     //https://restfulapi.net/http-methods/#post
     //https://restfulapi.net/http-methods/#delete
@@ -27,7 +25,6 @@ public interface MarketAlertServer {
     int UNSUPPORTED_MEDIA_TYPE = 415; // both
 //    public static int INTERNAL_SERVER_ERROR = 500;
 //    public static int NOT_IMPLEMENTED = 501;
-//    public static int SERVICE_UNAVAILABLE = 503;
+    int SERVICE_UNAVAILABLE = 503;
 
-//    int getStatus(HttpResponse<JsonNode> response);
 }

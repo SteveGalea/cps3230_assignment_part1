@@ -1,5 +1,7 @@
 package com.task1_screenscraper.rest;
 
+import com.task1_screenscraper.utils.MarketAlertServer;
+
 public class RequestHelper {
     private RequestMaker requestMaker;
 
@@ -14,9 +16,10 @@ public class RequestHelper {
     }
 
     // post and delete helpers
+    // assume 3 max retries are done to get a successful request, otherwise let the method return what ever status code is generated
     public int post() {
         if(requestMaker == null){
-            return -1; // bad request returned
+            return MarketAlertServer.SERVICE_UNAVAILABLE; // unavailable service
         }else {
             int statusCode;
             int tries = 1;
@@ -33,7 +36,7 @@ public class RequestHelper {
     }
     public int delete() {
         if(requestMaker == null){
-            return -1; // bad request returned
+            return MarketAlertServer.SERVICE_UNAVAILABLE; // unavailable service
         }else {
             int statusCode;
             int tries = 1;

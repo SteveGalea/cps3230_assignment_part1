@@ -10,11 +10,6 @@ public class PriceConverter {
         if(rawPriceText.length() == 0){
             return -1;
         }
-//
-//        //escape if string contains more than 1 "."
-//        if(rawPriceText.split("\\.").length > 2){
-//            return -1;
-//        }
 
         // conversion euros to cents
         double euros = Double.parseDouble(rawPriceText);

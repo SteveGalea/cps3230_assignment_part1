@@ -102,7 +102,7 @@ public class RequestMakerTests {
         // Teardown (if any)
     }
     @Test
-    public void testInvalidPostRequest(){
+    public void testNoServiceAvailableForPostRequest(){
         // Setup (if any)
         requestHelper.setRequestMaker(null);
 
@@ -110,7 +110,7 @@ public class RequestMakerTests {
         int statusCode = requestHelper.post();
 
         // Verify
-        Assertions.assertEquals(-1, statusCode);
+        Assertions.assertEquals(MarketAlertServer.SERVICE_UNAVAILABLE, statusCode);
 
         // Teardown (if any)
     }
@@ -209,7 +209,7 @@ public class RequestMakerTests {
     }
 
     @Test
-    public void testInvalidDeleteRequest(){
+    public void testNoServiceAvailableForDeleteRequest(){
         // Setup (if any)
         requestHelper.setRequestMaker(null);
 
@@ -217,7 +217,7 @@ public class RequestMakerTests {
         int statusCode = requestHelper.delete();
 
         // Verify
-        Assertions.assertEquals(-1, statusCode);
+        Assertions.assertEquals(marketAlertServer.SERVICE_UNAVAILABLE, statusCode);
 
         // Teardown (if any)
     }
