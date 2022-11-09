@@ -29,10 +29,6 @@ public class MaltaParkScreenScraper {
         this.requestHelper = requestHelper;
         this.requestMaker = requestMaker;
     }
-//
-//    public List<Product> getProductList() {
-//        return productList;
-//    }
 
     public void goToUrl(String websiteUrl) {
         driver.manage().window().maximize();
@@ -94,13 +90,5 @@ public class MaltaParkScreenScraper {
     public void setProductList(List<Product> productList){
         this.productList = productList;
     }
-//
-//    public String getWebsiteUrl() {
-//        return "https://www.maltapark.com/";
-//    }
 
-
-//    public void deleteMarketAlerts(){
-//        requestHelper.makeDeleteRequest();
-//    }
 }

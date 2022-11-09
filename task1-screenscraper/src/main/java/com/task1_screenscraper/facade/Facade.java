@@ -38,7 +38,7 @@ public class Facade {
         maltaParkScreenScraper = new MaltaParkScreenScraper(driver, wait, priceConverter, maltaParkPageObject, productList,requestHelper, requestMaker);
     }
 
-    //Setters
+    //Setters to set depended upon components
     public void setWebDriver(WebDriver driver) {
         this.driver.quit(); // quit previously set webdriver
         this.driver = driver;
