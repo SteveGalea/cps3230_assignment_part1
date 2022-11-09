@@ -31,7 +31,7 @@ public class MaltaParkTests {
         wait = mock(WebDriverWait.class);
         priceConverter = mock(PriceConverter.class);
 
-        maltaParkPageObject = mock(MaltaParkPageObject.class);
+//        maltaParkPageObject = mock(MaltaParkPageObject.class);
         maltaParkPageObject = new MaltaParkPageObject(driver, wait, priceConverter);
         mockWebElement = mock(WebElement.class);
 
@@ -208,134 +208,17 @@ public class MaltaParkTests {
     public void testGetFirst5ItemUrls(){
         //Setup
         List<WebElement> mockListElements = mock(List.class);
+
         Mockito.when(driver.findElements(any())).thenReturn(mockListElements);
         Mockito.when(mockWebElement.getAttribute(anyString())).thenReturn(Mockito.anyString());
 
-        //        Mockito.when(driver.findElements(any())).thenReturn(mockListElements);
-//        Mockito.when(mockWebElement.g)
-        //        Mockito.when(mockListElements.forEach(any()).thenReturn(mock(List.class));
-
         //Exercise
-        List<String> elements = maltaParkPageObject.getFirst5ItemsUrls();
+        List<String> elements = maltaParkPageObject.getFirstXItemsUrls(5);
 
         //Verify
         Assertions.assertNotNull(elements);
-//        Mockito.verify(mockWebElement, times(52)).getAttribute(anyString());
-
 
         //Teardown
     }
-//    @Test
-//    public void testVisitMaltaPark(){
-//        //verify page is present by ensuring driver.get() was invoked - spy like
-//        Mockito.verify(driver, Mockito.times(1)).get(Mockito.anyString());
-//    }
-//
-//
-//    @Test
-//    public void testVerifySearchElementsAreFound(){
-//        //Setup
-//        WebElement mockWebElement = mock(WebElement.class);
-//        doReturn(mockWebElement).when(maltaParkPageObject).getSearchBar();
-//        doReturn(mockWebElement).when(maltaParkPageObject).getSearchButton();
-//
-//        //Exercise
-//        WebElement searchBar = maltaParkPageObject.getSearchBar();
-//        WebElement searchButton = maltaParkPageObject.getSearchButton();
-//
-//        //Verify WebElements related to Search are Found
-//        Assertions.assertNotNull(searchBar);
-//        Assertions.assertNotNull(searchButton);
-//    }
-//
-//    @Test
-//    public void testVerifySearchForAProductAndRetrieveRelatedDataFromPage(){
-//        //Setup
-//        WebElement searchBar;
-//        WebElement searchButton;
-//        WebElement firstItem;
-//
-//        WebElement mockWebElement = mock(WebElement.class);
-//        when(maltaParkPageObject.getSearchBar()).thenReturn(mockWebElement);
-//        when(maltaParkPageObject.getSearchButton()).thenReturn(mockWebElement);
-//        when(maltaParkPageObject.getFirstItem()).thenReturn(mockWebElement);
-////        doReturn(mockWebElement).when(maltaParkPageObject).getSearchButton();
-////        doReturn(mockWebElement).when(maltaParkPageObject).getFirstItem();
-//
-//        //mock retrieved data from maltapark
-//        doReturn(6).when(maltaParkPageObject).getProductAlertType();
-//        doReturn("Test Heading").when(maltaParkPageObject).getProductHeading();
-//        doReturn("Test Description").when(maltaParkPageObject).getProductDescription();
-//        doReturn("Test Url").when(maltaParkPageObject).getProductUrl();
-//        doReturn("Test ImageUrl").when(maltaParkPageObject).getProductImageUrl();
-//        doReturn(23).when(maltaParkPageObject).getProductPriceInCents();
-//
-//        //Exercise
-//        searchBar = maltaParkPageObject.getSearchBar();
-//        searchButton = maltaParkPageObject.getSearchButton();
-//        searchBar.sendKeys(Mockito.anyString());
-//        searchButton.submit();
-//        firstItem = maltaParkPageObject.getFirstItem();
-//        firstItem.click();
-//
-//        int alertType = maltaParkPageObject.getProductAlertType();
-//        String heading = maltaParkPageObject.getProductHeading();
-//        String description = maltaParkPageObject.getProductDescription();
-//        String url = maltaParkPageObject.getProductUrl();
-//        String imageUrl = maltaParkPageObject.getProductImageUrl();
-//        int priceInCents = maltaParkPageObject.getProductPriceInCents();
-//
-//        //Verify
-//        Mockito.verify(driver, Mockito.times(1)).get(Mockito.anyString());
-//
-//        Assertions.assertNotNull(searchBar);
-//        Mockito.verify(searchBar, Mockito.times(1)).sendKeys(Mockito.anyString());
-//
-//        Assertions.assertNotNull(searchButton);
-//        Mockito.verify(searchButton, Mockito.times(1)).submit();
-//
-//        Mockito.verify(firstItem, Mockito.times(1)).click();
-//
-//        Assertions.assertNotNull(firstItem);
-//        Assertions.assertTrue(alertType>0);
-//        Assertions.assertTrue(heading.length()>0);
-//        Assertions.assertTrue(description.length()>0);
-//        Assertions.assertTrue(url.length()>0);
-//        Assertions.assertTrue(imageUrl.length()>0);
-//        Assertions.assertTrue(priceInCents>0);
-//    }
-//
-//    @Test
-//    public void testSearchForAProductAndGetFirst5ProductUrlLinks(){
-//        //Setup
-//        WebElement searchBar;
-//        WebElement searchButton;
-//        List<String> first5ItemsUrls;
-//
-//        //mock return elements as dummy objects
-//        WebElement mockWebElement = mock(WebElement.class);
-//        List<String> mockUrlList = mock(List.class);
-//
-//        doReturn(mockWebElement).when(maltaParkPageObject).getSearchBar();
-//        doReturn(mockWebElement).when(maltaParkPageObject).getSearchButton();
-//        doReturn(mockUrlList).when(maltaParkPageObject).getFirst5ItemsUrls();
-//        when(mockUrlList.size()).thenReturn(5);
-//
-//        //Exercise
-//        searchBar = maltaParkPageObject.getSearchBar();
-//        searchButton = maltaParkPageObject.getSearchButton();
-//        searchBar.sendKeys(Mockito.anyString());
-//        searchButton.submit();
-//        first5ItemsUrls = maltaParkPageObject.getFirst5ItemsUrls();
-//
-//        //Verify
-//        Assertions.assertNotNull(searchBar);
-//        Mockito.verify(searchBar, Mockito.times(1)).sendKeys(Mockito.anyString());
-//
-//        Assertions.assertNotNull(searchButton);
-//        Mockito.verify(searchButton, Mockito.times(1)).submit();
-//
-//        Assertions.assertNotNull(first5ItemsUrls);
-//        Assertions.assertEquals(5, first5ItemsUrls.size());
-//    }
+
 }

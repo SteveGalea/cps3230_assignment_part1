@@ -70,11 +70,11 @@ public class Facade {
     }
 
     // method/s
-    public void scrapeAndUpload5AlertsUsingKeyword(String keyword){
+    public void scrapeAndUploadXAlertsUsingKeyword(int x, String keyword){
         maltaParkScreenScraper.goToUrl(eCommerceWebsiteUrl);
         maltaParkScreenScraper.closeMessageModal();
         maltaParkScreenScraper.searchProductByTerm(keyword);
-        maltaParkScreenScraper.scrapeFirst5Results();
+        maltaParkScreenScraper.scrapeFirstXResults(x);
         maltaParkScreenScraper.uploadProductListToMarketAlert();
         maltaParkScreenScraper.stopScraping();
     }

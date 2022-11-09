@@ -14,14 +14,14 @@ public class MainTests {
         Facade facade = mock(Facade.class);
         Main.setFacade(facade);
 
-        doNothing().when(facade).scrapeAndUpload5AlertsUsingKeyword(anyString());
+        doNothing().when(facade).scrapeAndUploadXAlertsUsingKeyword(anyInt(), anyString());
 
         //Exercise
 //        main.main(null);
         Main.main(null);
 
         //Verify
-        verify(facade, times(1)).scrapeAndUpload5AlertsUsingKeyword(anyString());
+        verify(facade, times(1)).scrapeAndUploadXAlertsUsingKeyword(anyInt(),anyString());
 
         //Teardown
     }

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
-public class RequestHelperTest {
+public class RequestHelperTests {
     RequestHelper requestHelper;
     RequestMaker requestMaker;
     MarketAlertServer marketAlertServer;

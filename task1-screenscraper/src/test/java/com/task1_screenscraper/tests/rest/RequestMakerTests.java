@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
-public class RequestServiceTest {
+public class RequestMakerTests {
     RequestMaker requestMaker;
     RequestHelper requestHelper;
     MarketAlertServer marketAlertServer;

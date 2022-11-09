@@ -15,7 +15,7 @@ public class Main {
             // can never achieve 100% line coverage because this requires the creation of a facade mock
             facade = new Facade();
         }
-        facade.scrapeAndUpload5AlertsUsingKeyword("Laptop");
+        facade.scrapeAndUploadXAlertsUsingKeyword(5, "Laptop");
     }
 
 }

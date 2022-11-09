@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -137,13 +136,12 @@ public class MaltaParkPageObject extends PageObject{
         return webElement.getText().split("Category:")[1];
     }
 
-    public List<String> getFirst5ItemsUrls() {
+    public List<String> getFirstXItemsUrls(int x) {
         By byCommonClassXpath =  By.xpath("//div[contains(@class,'ui') and contains(@class,'items') and contains(@class,'listings')]/div[contains(@class,'item')]/*/a[@class='header']");
         List<WebElement> allElements = driver.findElements(byCommonClassXpath);
-
-        List<String> allLinks = new ArrayList<String>(5);
+        List<String> allLinks = new ArrayList<>(x);
         allElements.forEach(element -> allLinks.add(element.getAttribute("href")));
-        return allLinks.stream().limit(5).collect(Collectors.toList());
+        return allLinks.stream().limit(x).collect(Collectors.toList());
     }
 
 }

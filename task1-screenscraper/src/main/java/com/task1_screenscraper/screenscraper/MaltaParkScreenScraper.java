@@ -54,11 +54,11 @@ public class MaltaParkScreenScraper {
         driver.quit();
     }
 
-    public void scrapeFirst5Results() {
-        List<String> first5ElementsLinks = maltaParkPageObject.getFirst5ItemsUrls();
+    public void scrapeFirstXResults(int x) {
+        List<String> firstXElementsLinks = maltaParkPageObject.getFirstXItemsUrls(x);
 
         for (String productLink:
-                first5ElementsLinks) {
+                firstXElementsLinks) {
             goToUrl(productLink);
 
             Product product = new Product();

@@ -137,7 +137,7 @@ public class MaltaParkScreenScraperTests {
         mockListOf5Links.add("Link4");
         mockListOf5Links.add("Link5");
 
-        when(maltaParkPageObject.getFirst5ItemsUrls()).thenReturn(mockListOf5Links);
+        when(maltaParkPageObject.getFirstXItemsUrls(5)).thenReturn(mockListOf5Links);
 
         setupOfMocksForGoToUrl();
 //        Iterate over mocked list
@@ -153,7 +153,7 @@ public class MaltaParkScreenScraperTests {
         when(maltaParkPageObject.getProductPriceInCents()).thenReturn(6);
 
         //Exercise
-        maltaParkScreenScraper.scrapeFirst5Results();
+        maltaParkScreenScraper.scrapeFirstXResults(5);
 
         //Verify
         verify(productList, times(5)).add(any()); // assert that 5 items were added
