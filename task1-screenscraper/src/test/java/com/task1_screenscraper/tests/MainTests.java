@@ -17,12 +17,11 @@ public class MainTests {
         doNothing().when(facade).scrapeAndUploadXAlertsUsingKeyword(anyInt(), anyString());
 
         //Exercise
-//        main.main(null);
         Main.main(null);
 
         //Verify
         verify(facade, times(1)).scrapeAndUploadXAlertsUsingKeyword(anyInt(),anyString());
 
-        //Teardown
+        //Teardown (if any)
     }
 }

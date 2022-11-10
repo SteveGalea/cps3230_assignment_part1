@@ -30,8 +30,6 @@ public class MaltaParkTests {
         driver = mock(ChromeDriver.class);
         wait = mock(WebDriverWait.class);
         priceConverter = mock(PriceConverter.class);
-
-//        maltaParkPageObject = mock(MaltaParkPageObject.class);
         maltaParkPageObject = new MaltaParkPageObject(driver, wait, priceConverter);
         mockWebElement = mock(WebElement.class);
 
@@ -70,6 +68,7 @@ public class MaltaParkTests {
 
         //Verify
         Assertions.assertNotNull(searchBarElement);
+
         //Teardown (if any)
     }
 
@@ -170,7 +169,7 @@ public class MaltaParkTests {
         //Verify
         Assertions.assertEquals("RandomCategory",category);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -218,7 +217,7 @@ public class MaltaParkTests {
         //Verify
         Assertions.assertNotNull(elements);
 
-        //Teardown
+        //Teardown (if any)
     }
 
 }

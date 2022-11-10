@@ -3,7 +3,6 @@ package com.task1_screenscraper;
 import com.task1_screenscraper.facade.Facade;
 
 public class Main {
-
     static Facade facade;
 
     public static void setFacade(Facade facade) {

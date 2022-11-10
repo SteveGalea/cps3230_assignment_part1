@@ -33,11 +33,10 @@ public class MaltaParkScreenScraperTests {
     WebDriver.Options mockOptions;
     WebDriver.Window mockWindow;
     List<Product> productList;
-//    String marketAlertWebsiteUrl = "https://www.marketalertum.com/Alerts/List";
 
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\steve\\OneDrive\\Desktop\\YR3\\SEM1\\CPS3230\\webtesting\\chromedriver.exe");
         driver = mock(ChromeDriver.class);
         wait = mock(WebDriverWait.class);
@@ -46,19 +45,16 @@ public class MaltaParkScreenScraperTests {
         requestHelper = mock(RequestHelper.class);
         requestMaker = mock(RequestMaker.class);
         maltaParkPageObject = mock(MaltaParkPageObject.class);
-        maltaParkScreenScraper = new MaltaParkScreenScraper(driver,wait,priceConverter, maltaParkPageObject, productList, requestHelper, requestMaker);
-//        driver = new ChromeDriver();
-//        maltaParkScreenScraper = new MaltaParkScreenScraper(driver, wait, priceConverter);
-        //        marketAlertUMPageObject = new MarketAlertUMPageObject(driver);
+        maltaParkScreenScraper = new MaltaParkScreenScraper(driver, wait, priceConverter, maltaParkPageObject, productList, requestHelper, requestMaker);
     }
 
     @AfterEach
-    public void teardown(){
-//        maltaParkScreenScraper.stopScraping();
-//        maltaParkScreenScraper.deleteMarketAlerts();
+    public void teardown() {
+        // Teardown (if any)
     }
 
-    public void setupOfMocksForGoToUrl(){
+    public void setupOfMocksForGoToUrl() {
+        // Setup
         mockOptions = mock(WebDriver.Options.class);
         mockWindow = mock(WebDriver.Window.class);
 
@@ -66,8 +62,9 @@ public class MaltaParkScreenScraperTests {
         when(mockOptions.window()).thenReturn(mockWindow);
         doNothing().when(mockWindow).maximize();
     }
+
     @Test
-    public void testGoToUrlOpensAWebPageFromUrl(){
+    public void testGoToUrlOpensAWebPageFromUrl() {
         //Setup
         setupOfMocksForGoToUrl();
 
@@ -77,11 +74,11 @@ public class MaltaParkScreenScraperTests {
         //Verify
         Mockito.verify(driver, times(1)).get(anyString());
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
-    public void testCloseMessageModalClicksCloseButton(){
+    public void testCloseMessageModalClicksCloseButton() {
         //Setup
         WebElement mockButton = mock(WebElement.class);
         when(maltaParkPageObject.getCloseButton()).thenReturn(mockButton);
@@ -92,11 +89,11 @@ public class MaltaParkScreenScraperTests {
         //Verify
         Mockito.verify(mockButton, times(1)).click();
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
-    public void testSearchProductByTermClicksSearchButton(){
+    public void testSearchProductByTermClicksSearchButton() {
         //Setup
         WebElement mockSearchBar = mock(WebElement.class);
         WebElement mockSearchButton = mock(WebElement.class);
@@ -110,11 +107,11 @@ public class MaltaParkScreenScraperTests {
         //Verify
         Mockito.verify(mockSearchButton, times(1)).submit();
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
-    public void testStopScrapingToQuitScraping(){
+    public void testStopScrapingToQuitScraping() {
         //Setup
         doNothing().when(driver).quit();
 
@@ -124,11 +121,11 @@ public class MaltaParkScreenScraperTests {
         //Verify
         Mockito.verify(driver, times(1)).quit();
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
-    public void testScrapeFirst5ResultsAndVerify5ProductsWereAdded(){
+    public void testScrapeFirst5ResultsAndVerify5ProductsWereAdded() {
         //Setup
         List<String> mockListOf5Links = new ArrayList<>();
         mockListOf5Links.add("Link1");
@@ -140,10 +137,6 @@ public class MaltaParkScreenScraperTests {
         when(maltaParkPageObject.getFirstXItemsUrls(5)).thenReturn(mockListOf5Links);
 
         setupOfMocksForGoToUrl();
-//        Iterate over mocked list
-//        Iterator<String> mockLinkIterator = mock(Iterator.class);
-//        doCallRealMethod().when(mockListOf5Links).forEach(any((Consumer.class)));
-//        when(mockListOf5Links.iterator()).thenReturn(mockLinkIterator);
 
         when(maltaParkPageObject.getProductAlertType()).thenReturn(6);
         when(maltaParkPageObject.getProductHeading()).thenReturn("Test Heading");
@@ -157,13 +150,14 @@ public class MaltaParkScreenScraperTests {
 
         //Verify
         verify(productList, times(5)).add(any()); // assert that 5 items were added
-        //Teardown
+
+        //Teardown (if any)
     }
 
     @Test
-    public void testUploadProductListToMarketAlertEndpointIsDone(){
+    public void testUploadProductListToMarketAlertEndpointIsDone() {
         //Setup
-        Product product = new Product(6,"Test Heading","Test Description", "Test Url", "Test ImageUrl",22);
+        Product product = new Product(6, "Test Heading", "Test Description", "Test Url", "Test ImageUrl", 22);
 
         productList = new ArrayList<>();
         productList.add(product);
@@ -187,29 +181,6 @@ public class MaltaParkScreenScraperTests {
 
         Assertions.assertEquals(201, requestHelper.post());
 
-        //Teardown
+        //Teardown (if any)
     }
-
-    // test get 5 alerts and put them on the website
-    // returns ok, created, ... status code
-    // what if web went down, databases failed, etc
-
-//    @Test
-//    public void testScrapeFirst5LaptopResults(){
-//        // Setup
-//        maltaParkScreenScraper.goToUrl(eCommerceWebsiteUrl);
-//        maltaParkScreenScraper.closeMessageModal();
-//        maltaParkScreenScraper.searchProductByTerm("Laptop");
-//        maltaParkScreenScraper.scrapeFirst5Results();
-//        maltaParkScreenScraper.uploadProductListToMarketAlert();
-//
-//        // Exercise
-//        int size = maltaParkScreenScraper.getProductList().size();
-//
-//        // Verify
-//        Assertions.assertEquals(5, size);
-//
-//        // Teardown
-//    }
-
 }

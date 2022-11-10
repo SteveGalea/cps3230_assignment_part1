@@ -36,7 +36,6 @@ public class RequestMaker {
         jsonObject.put("priceInCents", product.getPriceInCents());
     }
 
-
     //methods
     // delete request using UnirestApi
     public int makeDeleteRequest() {

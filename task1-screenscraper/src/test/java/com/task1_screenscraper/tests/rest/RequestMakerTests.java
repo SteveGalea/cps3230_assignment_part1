@@ -19,6 +19,7 @@ public class RequestMakerTests {
 
     @BeforeEach
     public void setup(){
+        // Setup
         requestHelper = new RequestHelper();
         requestMaker = mock(RequestMaker.class);
         requestHelper.setRequestMaker(requestMaker);

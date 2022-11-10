@@ -30,7 +30,7 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(-1, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -44,7 +44,7 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(-1, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -58,7 +58,7 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(100000, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -72,7 +72,7 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(100000, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -86,7 +86,7 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(1050, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -100,7 +100,7 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(100050, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -114,7 +114,7 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(100050, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -128,7 +128,7 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(100050, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
     @Test
@@ -142,10 +142,10 @@ public class PriceConverterTests {
         //Verify
         Assertions.assertEquals(100050, actual);
 
-        //Teardown
+        //Teardown (if any)
     }
 
-    //TODO: ASK ABOUT THIS
+    //TODO: ASK ABOUT THIS .. and alpha numeric input
 
 //    @Test
 //    public void testHandlingTwoDecimalPointsInNumber(){

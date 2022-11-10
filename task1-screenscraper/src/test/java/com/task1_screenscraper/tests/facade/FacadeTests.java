@@ -1,4 +1,4 @@
-package com.task1_screenscraper.tests;
+package com.task1_screenscraper.tests.facade;
 
 import com.task1_screenscraper.converters.PriceConverter;
 import com.task1_screenscraper.facade.Facade;
@@ -86,60 +86,6 @@ public class FacadeTests {
         //other assertions
         Assertions.assertEquals(5, productList.size());
 
-        // Teardown
+        // Teardown (if any)
     }
-//    @Test
-//    public void testScrapeAndUploadAny4LaptopSearchResults(){
-//        // Setup
-//        doNothing().when(maltaParkScreenScraper).goToUrl("https://www.maltapark.com/");
-//        doNothing().when(maltaParkScreenScraper).closeMessageModal();
-//        doNothing().when(maltaParkScreenScraper).searchProductByTerm(anyString());
-//        doNothing().when(maltaParkScreenScraper).scrapeFirstXResults(5);
-//        doNothing().when(maltaParkScreenScraper).uploadProductListToMarketAlert();
-//        doNothing().when(maltaParkScreenScraper).stopScraping();
-//        when(productList.size()).thenReturn(4);
-//
-//        // Exercise
-//        facade.scrapeAndUploadXAlertsUsingKeyword(4, "Laptop");
-//
-//        // Verify
-//        //get num of calls of each method
-//        verify(maltaParkScreenScraper, times(1)).goToUrl(anyString());
-//        verify(maltaParkScreenScraper, times(1)).closeMessageModal();
-//        verify(maltaParkScreenScraper, times(1)).searchProductByTerm(anyString());
-//        verify(maltaParkScreenScraper, times(1)).scrapeFirstXResults(anyInt());
-//        verify(maltaParkScreenScraper, times(1)).uploadProductListToMarketAlert();
-//        verify(maltaParkScreenScraper, times(1)).stopScraping();
-//        //other assertions
-//        Assertions.assertEquals(4, productList.size());
-//
-//        // Teardown
-//    }
-//    @Test
-//    public void testAllow5AlertsOrLessToBePresentedOnScreen(){
-//        // Setup
-//        doNothing().when(maltaParkScreenScraper).goToUrl("https://www.maltapark.com/");
-//        doNothing().when(maltaParkScreenScraper).closeMessageModal();
-//        doNothing().when(maltaParkScreenScraper).searchProductByTerm(anyString());
-//        doNothing().when(maltaParkScreenScraper).scrapeFirstXResults(6);
-//        doNothing().when(maltaParkScreenScraper).uploadProductListToMarketAlert();
-//        doNothing().when(maltaParkScreenScraper).stopScraping();
-//        when(productList.size()).thenReturn(5);
-//
-//        // Exercise
-//        facade.scrapeAndUploadXAlertsUsingKeyword(4, "Laptop");
-//
-//        // Verify
-//        //get num of calls of each method
-//        verify(maltaParkScreenScraper, times(1)).goToUrl(anyString());
-//        verify(maltaParkScreenScraper, times(1)).closeMessageModal();
-//        verify(maltaParkScreenScraper, times(1)).searchProductByTerm(anyString());
-//        verify(maltaParkScreenScraper, times(1)).scrapeFirstXResults(anyInt());
-//        verify(maltaParkScreenScraper, times(1)).uploadProductListToMarketAlert();
-//        verify(maltaParkScreenScraper, times(1)).stopScraping();
-//        //other assertions
-//        Assertions.assertEquals(5, productList.size());
-//
-//        // Teardown
-//    }
 }
